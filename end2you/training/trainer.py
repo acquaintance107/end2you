@@ -216,8 +216,8 @@ class Trainer(BasePhase):
                     if n_iter % params.save_summary_steps == 0:
                         writer.add_scalar(f'{self.loss_name}_loss_{name}/', label_loss)
                 
-                total_loss /= num_outs
-                mean_loss += total_loss
+                total_loss = total_loss / num_outs
+                mean_loss = mean_loss + total_loss
                 
                 if is_training:
                     total_loss.backward()
